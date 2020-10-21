@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -35,6 +36,16 @@ public class EditoriaResource {
 		return this.editoriaService.pesquisarPorId(id)
 				.map(editoria -> ResponseEntity.ok(editoria))
 				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@GetMapping(params = "nome")
+	public List<Editoria> pesquisarPorNome(@RequestParam String nome) {
+		return this.editoriaService.pesquisarPorNome(nome);
+	}
+	
+	@GetMapping("/comecadaspore")
+	public List<Editoria> listarTodasComecadasPorE() {
+		return this.editoriaService.listarTodasComecadasPorE();
 	}
 	
 	@PostMapping

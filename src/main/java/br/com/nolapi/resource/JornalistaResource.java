@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -35,6 +36,31 @@ public class JornalistaResource {
 		return this.jornalistaService.pesqusarPorId(id)
 				.map(jornalista -> ResponseEntity.ok(jornalista))
 				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@GetMapping(params = "nome")
+	public List<Jornalista> pesquisarPorNome(@RequestParam String nome) {
+		return this.jornalistaService.pesquisarPorNome(nome);
+	}
+	
+	@GetMapping(params = "email")
+	public List<Jornalista> pesquisarPorEmailContendo(@RequestParam String email) {
+		return this.jornalistaService.pesquisarPorEmailContendo(email);
+	}
+	
+	@GetMapping("/comecadospora")
+	public List<Jornalista> listarTodosComecadosPorA() {
+		return this.jornalistaService.listarTodosComecadosPorA();
+	}
+	
+	@GetMapping("/listartudo")
+	public List<Jornalista> listarTudo() {
+		return this.jornalistaService.listarTudo();
+	}
+	
+	@GetMapping(value = "/editoria/{nomeEditoria}")
+	public List<Jornalista> listarQuemTemNoticiaNaEditoria(@PathVariable("nomeEditoria") String nomeEditoria) {
+		return this.jornalistaService.listarQuemTemNoticiaNaEditoria(nomeEditoria);
 	}
 	
 	@PostMapping

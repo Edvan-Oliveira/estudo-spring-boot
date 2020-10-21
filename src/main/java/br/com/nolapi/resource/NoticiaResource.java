@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -35,6 +36,11 @@ public class NoticiaResource {
 		return this.noticiaService.pesquisarPorId(id)
 				.map(noticia -> ResponseEntity.ok(noticia))
 				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@GetMapping(params = "titulo")
+	public List<Noticia> pesquisarTituloComecandoPor(@RequestParam String titulo) {
+		return this.noticiaService.pesquisarTituloComecandoPor(titulo);
 	}
 	
 	@PostMapping

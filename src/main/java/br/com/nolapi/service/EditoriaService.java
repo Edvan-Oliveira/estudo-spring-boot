@@ -30,6 +30,14 @@ public class EditoriaService {
 		return this.editoriaRepository.findById(id);
 	}
 	
+	public List<Editoria> pesquisarPorNome(String nome) {
+		return this.editoriaRepository.findByNomeOrderByNomeAsc(nome);
+	}
+	
+	public List<Editoria> listarTodasComecadasPorE() {
+		return this.editoriaRepository.listarTodasComecandasPorE();
+	}
+	
 	public void remover(Editoria editoria) {
 		this.editoriaRepository.delete(editoria);
 	}

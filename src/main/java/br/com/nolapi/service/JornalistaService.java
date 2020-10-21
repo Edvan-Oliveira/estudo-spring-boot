@@ -30,6 +30,26 @@ public class JornalistaService {
 		return this.jornalistaRepository.findById(id);
 	}
 	
+	public List<Jornalista> pesquisarPorNome(String nome) {
+		return this.jornalistaRepository.findByNomeOrderByNome(nome);
+	}
+	
+	public List<Jornalista> pesquisarPorEmailContendo(String email) {
+		return this.jornalistaRepository.findByEmailContaining(email);
+	}
+	
+	public List<Jornalista> listarTodosComecadosPorA() {
+		return this.jornalistaRepository.listarTodosComecadosPorA();
+	}
+	
+	public List<Jornalista> listarTudo() {
+		return this.jornalistaRepository.listarTudo();
+	}
+	
+	public List<Jornalista> listarQuemTemNoticiaNaEditoria(String nomeEditoria) {
+		return this.jornalistaRepository.listarQuemTemNoticiaNaEditoria(nomeEditoria);
+	}
+	
 	public void remover(Jornalista jornalista) {
 		this.jornalistaRepository.delete(jornalista);
 	}

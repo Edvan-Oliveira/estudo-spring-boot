@@ -30,6 +30,10 @@ public class NoticiaService {
 		return this.noticiaRepository.findById(id);
 	}
 	
+	public List<Noticia> pesquisarTituloComecandoPor(String titulo) {
+		return this.noticiaRepository.findByTituloStartingWithOrderByTituloDesc(titulo);
+	}
+	
 	public void remover(Noticia noticia) {
 		this.noticiaRepository.delete(noticia);
 	}
